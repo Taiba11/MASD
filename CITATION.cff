@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "MASD: Multi-Scale Self-Supervised Learning for Efficient Audio Deepfake Detection"
+type: software
+authors:
+  - family-names: "Wani"
+    given-names: "Taiba Majid"
+    email: "majid@diag.uniroma1.it"
+    affiliation: "Sapienza University of Rome"
+  - family-names: "Amerini"
+    given-names: "Irene"
+    email: "amerini@diag.uniroma1.it"
+    affiliation: "Sapienza University of Rome"
+preferred-citation:
+  type: article
+  title: "Multi-Scale Self-Supervised Learning for Efficient Audio Deepfake Detection"
+  authors:
+    - family-names: "Wani"
+      given-names: "Taiba Majid"
+    - family-names: "Amerini"
+      given-names: "Irene"
+  journal: "IEEE Signal Processing Letters"
+  volume: 33
+  start: 46
+  end: 50
+  year: 2026
+  doi: "10.1109/LSP.2025.3634032"
