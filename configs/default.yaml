@@ -1,0 +1,75 @@
+# =============================================================================
+# MASD: Default Configuration
+# =============================================================================
+
+# Audio
+audio:
+  sample_rate: 16000
+  window_ms: 25
+  stride_ms: 10
+  n_mels: 64
+
+# Multi-Scale Spectral Decomposition (Section II-A.1)
+spectral_bands:
+  low: [0, 1000]       # S_low: fundamental frequency artifacts
+  mid: [1000, 4000]    # S_mid: formant irregularities
+  high: [4000, 8000]   # S_high: vocoder distortions, aliasing
+
+# Shared CNN Encoder (Section II-A.1)
+encoder:
+  channels: [64, 128, 256, 256, 128]
+  kernel_size: 3
+  stride: 2
+  embedding_dim: 128
+
+# Adversarial Vocoder Augmentation (Section II-A.2)
+vocoder_augmentation:
+  vocoders: ["WORLD", "WaveGlow", "MelGAN", "HiFi-GAN", "UnivNet", "BigVGAN"]
+  augment_ratio: 0.4
+  gamma: 0.01
+  lambda_adv: 0.3
+  difficulty: {"WORLD": 1, "WaveGlow": 1, "MelGAN": 2, "HiFi-GAN": 2, "UnivNet": 3, "BigVGAN": 3}
+
+# SSL Pretraining (Section II-A.3)
+ssl:
+  mask_ratio: 0.15
+  patch_size: 16
+  cpc_k: 12
+  cpc_negatives: 128
+  cpc_temperature: 0.07
+
+# Handcrafted Features (Section II-B.2)
+handcrafted:
+  hf_cutoff: 8000      # HFER threshold
+
+# Cross-Attention Fusion (Section II-B.3)
+attention:
+  dk: 64
+  dv: 64
+  output_dim: 256
+
+# SVM Classification (Section II-C)
+svm:
+  kernel: "rbf"
+  C: 10
+  gamma: 0.01
+
+# SSL Pretraining Schedule
+pretrain:
+  epochs: 100
+  batch_size: 256
+  optimizer: "adamw"
+  lr: 0.0001
+  weight_decay: 0.01
+  fp16: true
+
+# Downstream Training
+downstream:
+  epochs: 50
+  batch_size: 64
+  optimizer: "sgd"
+  lr: 0.001
+  svm_retrain_interval: 5
+  calibration_split: 0.2
+
+seed: 42

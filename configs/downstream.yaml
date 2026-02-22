@@ -1,0 +1,11 @@
+# MASD: Downstream Training Configuration
+data_dir: "data/ASVspoof2019/LA"
+encoder_ckpt: "checkpoints/ssl_pretrained/best_encoder.pth"
+output_dir: "experiments/masd"
+
+epochs: 50
+batch_size: 64
+lr: 0.001
+optimizer: "sgd"
+svm_retrain_interval: 5
+calibration_split: 0.2
